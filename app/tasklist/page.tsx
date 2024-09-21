@@ -1,6 +1,6 @@
 "use client";
 import TaskListCard from "@/components/tasklistCard";
-import { useRecoilState, useRecoilValue } from "recoil";
+import {  useRecoilValue } from "recoil";
 import { filterState, retreive, sortState } from "../atoms";
 import { useEffect, useState } from "react";
 import axios from "axios";

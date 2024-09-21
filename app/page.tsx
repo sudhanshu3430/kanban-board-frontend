@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from 'next/navigation'
 import { useToast } from "@/hooks/use-toast"
 import axios from  'axios'
-import { useRecoilState, useSetRecoilState } from "recoil";
+import {  useSetRecoilState } from "recoil";
 import { signoutstate } from "./atoms";
 
 

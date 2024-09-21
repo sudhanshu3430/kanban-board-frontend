@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 // import { useRouter } from 'next/navigation'
 import axios from  'axios'
-import { useRecoilState, useSetRecoilState } from "recoil";
+import {  useSetRecoilState } from "recoil";
 import { signoutstate } from "../atoms";
 
 interface SignUpFormInputs {
