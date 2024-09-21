@@ -67,6 +67,7 @@ const  setSignState = useSetRecoilState(signoutstate)
           </div>
           <div className="flex justify-center  ">
             <Input
+            unusedproperty=""
               type="email"
               placeholder="Email"
               {...register("username", { required: "Email is required" })}
@@ -80,6 +81,7 @@ const  setSignState = useSetRecoilState(signoutstate)
           </div>
           <div className="flex justify-center">
             <Input
+            unusedproperty=""
               type="password"
               placeholder="Password"
               {...register("password", { required: "Password is required" })}

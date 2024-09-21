@@ -67,6 +67,7 @@ export default function SignUpForm(): JSX.Element {
           </div>
           <div className="flex justify-center  ">
             <Input
+              unusedproperty=""
               type="email"
               placeholder="Email"
               {...register("username", { required: "Email is required" })}
@@ -80,6 +81,7 @@ export default function SignUpForm(): JSX.Element {
           </div>
           <div className="flex justify-center">
             <Input
+            unusedproperty=""
               type="password"
               placeholder="Password"
               {...register("password", { required: "Password is required" })}
@@ -93,6 +95,7 @@ export default function SignUpForm(): JSX.Element {
           </div>
           <div className="flex justify-center">
             <Input
+            unusedproperty=""
               type="password"
               placeholder="Confirm Password"
               {...register("confirmPassword", {
