@@ -22,6 +22,7 @@ export default function TaskList() {
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
+    console.log(storedToken)
     setToken(storedToken); // Now this works because token can be null
   }, []);
   console.log(filterValue, sortValue)
@@ -42,7 +43,7 @@ export default function TaskList() {
     };
 
     fetchData();
-  }, [reRender]);
+  }, [token, reRender]);
 
   useEffect(() => {
     const filterList = async () => {
