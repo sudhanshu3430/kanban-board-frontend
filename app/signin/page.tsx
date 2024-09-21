@@ -2,23 +2,24 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useRouter } from 'next/navigation'
 import { useToast } from "@/hooks/use-toast"
+import { useRouter } from "next/navigation";
+
+// import { useRouter } from 'next/navigation'
 import axios from  'axios'
 import { useRecoilState } from "recoil";
-import { signoutstate } from "./atoms";
-
+import { signoutstate } from "../atoms";
 
 interface SignUpFormInputs {
   username: string;
   password: string;
-  confirmPassword: string;
+//   confirmPassword: string;
 }
 
-export default function SignUpForm(): JSX.Element {
+export default function SignInForm(): JSX.Element {
   const router = useRouter();
-  const {toast } = useToast();
-  const [signState, setSignState] = useRecoilState(signoutstate)
+const { toast } = useToast();
+const [signState,setSignState] = useRecoilState(signoutstate)
   const {
     register,
     handleSubmit,
@@ -28,7 +29,7 @@ export default function SignUpForm(): JSX.Element {
   const onSubmit: SubmitHandler<SignUpFormInputs> = async (data) => {
 
     try {
-      const response = await axios.post('https://kanban-todo-backend.onrender.com/api/v1/user/signup', {
+      const response = await axios.post('https://kanban-todo-backend.onrender.com/api/v1/user/signin', {
           username: data.username,
           password: data.password,
       });
@@ -36,34 +37,33 @@ export default function SignUpForm(): JSX.Element {
       const token = response.data.token;
       localStorage.setItem('token', token);
       console.log('Token stored:', token);
-      
       console.log('Response:', response.data);
 
-      toast({
-        description:"Sign Up Success",
+     toast({
+        description: "Sign in Successful",
         duration: 5000
       });
       setSignState(true)
       router.push("/tasklist")
   } catch (error) {
-      console.error('Error during signup:', error);
+      console.error('Error during signin:', error);
   }
     console.log(data);
   };
 
-  const signinClickHandler = (): void => {
-    router.push('/signin'); 
-  }
+//   const signinClickHandler = (): void => {
+//     router.push('/signin'); 
+//   }
 
   return (
     <div className="flex items-center justify-center min-h-screen ">
-      <div className="p-8 border rounded shadow-lg bg-white w-full max-w-xs md:w-3/12">
+      <div className="p-8 border rounded shadow-lg bg-white w-full max-w-xs md:w-3/12 ">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="grid gap-2"
         >
           <div className="font-bold bg-black-600 flex justify-center ">
-            <h3>Sign Up</h3>
+            <h3>Sign In</h3>
           </div>
           <div className="flex justify-center  ">
             <Input
@@ -91,33 +91,33 @@ export default function SignUpForm(): JSX.Element {
               <span className="text-red-500">{errors.password.message}</span>
             )}
           </div>
-          <div className="flex justify-center">
+          {/* <div className="flex justify-center">
             <Input
               type="password"
               placeholder="Confirm Password"
               {...register("confirmPassword", {
                 required: "Please confirm your password",
               })}
-              className="w-full"
+              className="w-9/12"
             />
-          </div>
-          <div className="flex justify-center">
+          </div> */}
+          {/* <div className="flex justify-center">
             {errors.confirmPassword && (
               <span className="text-red-500">
                 {errors.confirmPassword.message}
               </span>
             )}
-          </div>
+          </div> */}
           <div className="flex justify-center">
             <Button type="submit" className="justify-center w-9/12">
-              Sign Up
+              Sign In
             </Button>
           </div>
         </form>
-        <div className="flex items-center justify-center">
-          <p className="text-xs">Already have an account?</p>
-          <Button variant="link" className="underline text-xs" onClick={signinClickHandler}>Sign in</Button>
-        </div>
+        {/* <div className="flex items-center justify-center">
+          <p>Already have an account?</p>
+          <Button variant="link" className="underline" onClick={signinClickHandler}>Sign in</Button>
+        </div> */}
       </div>
     </div>
   );
