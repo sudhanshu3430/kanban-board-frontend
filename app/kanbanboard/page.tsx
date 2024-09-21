@@ -13,7 +13,7 @@ interface Tasks {
   status: Status;
 }
 type Status = 'pending' | 'inprogress' | 'completed';
-interface Columns {
+interface Columns  {
   [key: string]: Tasks[]; // Index signature to allow dynamic keys
 }
 const initialColumns: Columns = {
