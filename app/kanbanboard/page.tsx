@@ -4,7 +4,7 @@ import KanbanBoardCard from "@/components/kanbanboardcard";
 import { toast } from "@/hooks/use-toast";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd";
 
 interface Tasks {
   _id: string;
@@ -60,7 +60,7 @@ export default function KanbanBoard() {
     fetchTasks();
   },[token]);
 
-  const handleDragEnd = async (result: any) => {
+  const handleDragEnd = async (result:DropResult) => {
     console.log("Drag result:", result);
     const { destination, source } = result;
   

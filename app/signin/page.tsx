@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 // import { useRouter } from 'next/navigation'
 import axios from  'axios'
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { signoutstate } from "../atoms";
 
 interface SignUpFormInputs {
@@ -19,7 +19,7 @@ interface SignUpFormInputs {
 export default function SignInForm(): JSX.Element {
   const router = useRouter();
 const { toast } = useToast();
-const [signState,setSignState] = useRecoilState(signoutstate)
+const  setSignState = useSetRecoilState(signoutstate)
   const {
     register,
     handleSubmit,

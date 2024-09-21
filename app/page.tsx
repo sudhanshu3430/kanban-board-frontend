@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from 'next/navigation'
 import { useToast } from "@/hooks/use-toast"
 import axios from  'axios'
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { signoutstate } from "./atoms";
 
 
@@ -18,7 +18,7 @@ interface SignUpFormInputs {
 export default function SignUpForm(): JSX.Element {
   const router = useRouter();
   const {toast } = useToast();
-  const [signState, setSignState] = useRecoilState(signoutstate)
+  const  setSignState = useSetRecoilState(signoutstate)
   const {
     register,
     handleSubmit,

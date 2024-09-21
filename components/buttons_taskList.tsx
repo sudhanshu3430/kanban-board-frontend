@@ -8,12 +8,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useRecoilState } from "recoil";
+import  {useSetRecoilState}  from "recoil";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 export default function ButtonTaskList() {
-    const [filter, setFilter] = useRecoilState(filterState)
-    const [sort, setSort] = useRecoilState(sortState)
+    const  setFilter = useSetRecoilState(filterState)
+    const  setSort = useSetRecoilState(sortState)
     const router = useRouter();
     function onFilterChange(filterValue: string){
         setFilter(filterValue)

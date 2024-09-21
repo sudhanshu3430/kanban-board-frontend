@@ -1,6 +1,6 @@
 "use client";
 import TaskListCard from "@/components/tasklistCard";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { filterState, retreive, sortState } from "../atoms";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -13,10 +13,10 @@ interface TasksType {
 }
 
 export default function TaskList() {
-  const [filterValue, setFilterValue] = useRecoilState(filterState);
-  const [sortValue, setSortValue] = useRecoilState(sortState);
+  const filterValue = useRecoilValue(filterState);
+  const sortValue = useRecoilValue(sortState);
   const [allTasks, setAllTasks] = useState<TasksType[]>([]); // Ensure allTasks is initialized as an empty array
-  const [reRender, setreRender] = useRecoilState(retreive)
+  const reRender = useRecoilValue(retreive)
   const token = localStorage.getItem("token");
   console.log(filterValue, sortValue)
 

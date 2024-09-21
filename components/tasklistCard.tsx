@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useState } from "react";
 import axios from "axios";
-import { useRecoilState } from "recoil";
+import {  useSetRecoilState } from "recoil";
 import { retreive } from "@/app/atoms";
 import { toast } from "@/hooks/use-toast";
 
@@ -30,7 +30,7 @@ export default function TaskListCard({
 }: TaskListProps) {
   const [newPriority, setNewPriority] = useState(priority);
   const [newStatus, setNewStatus] = useState(status);
-  const [rerender, setRerender] = useRecoilState(retreive);
+  const  setRerender = useSetRecoilState(retreive);
 
   async function handleStatusChange(statusValue: string) {
     setNewStatus(statusValue);
