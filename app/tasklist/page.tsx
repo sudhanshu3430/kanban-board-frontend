@@ -17,7 +17,13 @@ export default function TaskList() {
   const sortValue = useRecoilValue(sortState);
   const [allTasks, setAllTasks] = useState<TasksType[]>([]); // Ensure allTasks is initialized as an empty array
   const reRender = useRecoilValue(retreive)
-  const token = localStorage.getItem("token");
+
+   const [token, setToken] = useState<string | null>(null); // Allow null
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    setToken(storedToken); // Now this works because token can be null
+  }, []);
   console.log(filterValue, sortValue)
 
   useEffect(() => {

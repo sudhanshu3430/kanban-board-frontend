@@ -26,7 +26,12 @@ export default function KanbanBoard() {
   // const [alltasks, setAllTasks] = useState<Tasks[]>([]);
   const [columns, setColumns] = useState<Columns>(initialColumns);
 
-  const token = localStorage.getItem("token");
+  const [token, setToken] = useState<string | null>(null); // Allow null
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    setToken(storedToken); // Now this works because token can be null
+  }, []);
 
   useEffect(() => {
     const fetchTasks = async () => {

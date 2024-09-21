@@ -110,7 +110,7 @@ export default function ButtonTaskList() {
             <Button onClick={()=>{
                setFilter("");
                setSort("")
-            }} className="hidden md:block">View Kanban</Button>
+            }} >Clear</Button>
 
         </div>
     </div>

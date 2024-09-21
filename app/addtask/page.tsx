@@ -12,7 +12,7 @@ import { useToast } from "@/hooks/use-toast"
 
 // import { useRouter } from 'next/navigation'
 import axios from  'axios'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 
@@ -29,8 +29,16 @@ import { useState } from "react";
 export default function SignInForm(): JSX.Element {
   // const router = useRouter();
   const [priorityValue, setPriorityValue] = useState("")
-  const [statusValue, setStatusValue] = useState("")
-  const token = localStorage.getItem('token')
+  const [statusValue, setStatusValue] = useState("");
+ 
+
+  const [token, setToken] = useState<string | null>(null); // Allow null
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    setToken(storedToken); // Now this works because token can be null
+  }, []);
+
 const { toast } = useToast()
   const {
     register,
