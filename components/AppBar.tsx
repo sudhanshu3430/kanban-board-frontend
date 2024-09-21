@@ -14,7 +14,7 @@ export function AppBar(){
     setInterval(async () => {
         const response = await axios.get("https://kanban-todo-backend.onrender.com/hit");
         console.log({ response });
-    }, 60000);
+    }, 240000);
     
     useEffect(()=>{
         const token = localStorage.getItem("token") || " ";
