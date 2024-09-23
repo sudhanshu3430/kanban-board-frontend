@@ -33,6 +33,7 @@ const  setSignState = useSetRecoilState(signoutstate)
   const onSubmit: SubmitHandler<SignUpFormInputs> = async (data) => {
 
     try {
+      setLoading(true);
       const response = await axios.post('https://kanban-todo-backend.onrender.com/api/v1/user/signin', {
           username: data.username,
           password: data.password,

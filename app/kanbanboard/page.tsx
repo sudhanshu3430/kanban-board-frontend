@@ -68,7 +68,7 @@ export default function KanbanBoard() {
       console.log("Updated columns:", newColumns);
     }
     fetchTasks();
-  },[]);
+  },[token]);
 
   const handleDragEnd = async (result:DropResult) => {
     console.log("Drag result:", result);
