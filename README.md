@@ -1,3 +1,7 @@
+**Backend Link** https://github.com/sudhanshu3430/kanban-todo-backend
+**Deployed Link** https://kanban-board-frontend-lake.vercel.app/
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
