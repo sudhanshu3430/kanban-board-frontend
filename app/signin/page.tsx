@@ -9,6 +9,8 @@ import { useRouter } from "next/navigation";
 import axios from  'axios'
 import {  useSetRecoilState } from "recoil";
 import { signoutstate } from "../atoms";
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
 
 interface SignUpFormInputs {
   username: string;
@@ -18,6 +20,8 @@ interface SignUpFormInputs {
 
 export default function SignInForm(): JSX.Element {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
 const { toast } = useToast();
 const  setSignState = useSetRecoilState(signoutstate)
   const {
@@ -110,11 +114,15 @@ const  setSignState = useSetRecoilState(signoutstate)
               </span>
             )}
           </div> */}
-          <div className="flex justify-center">
+          {loading ?  <Button disabled>
+      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+      Please wait
+    </Button> : <div className="flex justify-center">
             <Button type="submit" className="justify-center w-9/12">
               Sign In
             </Button>
-          </div>
+          </div>}
+          
         </form>
         {/* <div className="flex items-center justify-center">
           <p>Already have an account?</p>

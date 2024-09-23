@@ -6,6 +6,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd";
 
+
 interface Tasks {
   _id: string;
   taskname: string;
@@ -27,11 +28,15 @@ export default function KanbanBoard() {
   const [columns, setColumns] = useState<Columns>(initialColumns);
 
   const [token, setToken] = useState<string | null>(null); // Allow null
+ 
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    setToken(storedToken); // Now this works because token can be null
-  }, []);
+   
+      const storedToken = localStorage.getItem("token");
+    setToken(storedToken);
+
+    // Now this works because token can be null
+  }, [token]);
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -63,7 +68,7 @@ export default function KanbanBoard() {
       console.log("Updated columns:", newColumns);
     }
     fetchTasks();
-  },[token]);
+  },[]);
 
   const handleDragEnd = async (result:DropResult) => {
     console.log("Drag result:", result);

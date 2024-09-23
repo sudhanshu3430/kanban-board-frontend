@@ -14,6 +14,8 @@ import axios from "axios";
 // import { useRecoilState } from "recoil";
 // import { retreive } from "@/app/atoms";
 import { toast } from "@/hooks/use-toast";
+import { useSetRecoilState } from "recoil";
+import { retreive } from "@/app/atoms";
 
 interface TaskListProps {
   taskId: string;
@@ -32,7 +34,7 @@ export default function KanbanBoardCard({
 }: TaskListProps) {
   const [newPriority, setNewPriority] = useState(priority);
   const [newStatus, setNewStatus] = useState(status);
-//   const [rerender, setRerender] = useRecoilState(retreive);
+  const  setRerender = useSetRecoilState(retreive);
 
   async function handleStatusChange(statusValue: string) {
     setNewStatus(statusValue);
@@ -60,7 +62,7 @@ export default function KanbanBoardCard({
   async function handleDelete() {
     try {
       await axios.delete(`https://kanban-todo-backend.onrender.com/api/v1/task/delete/?taskId=${taskId}`);
-    //   setRerender(taskId);
+      setRerender(taskId);
       toast({
         description: "delete success"
       })

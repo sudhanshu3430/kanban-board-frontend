@@ -7,6 +7,8 @@ import { useToast } from "@/hooks/use-toast"
 import axios from  'axios'
 import {  useSetRecoilState } from "recoil";
 import { signoutstate } from "./atoms";
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
 
 
 interface SignUpFormInputs {
@@ -18,6 +20,7 @@ interface SignUpFormInputs {
 export default function SignUpForm(): JSX.Element {
   const router = useRouter();
   const {toast } = useToast();
+  const [loading, setLoading] = useState(false);
   const  setSignState = useSetRecoilState(signoutstate)
   const {
     register,
@@ -28,6 +31,7 @@ export default function SignUpForm(): JSX.Element {
   const onSubmit: SubmitHandler<SignUpFormInputs> = async (data) => {
 
     try {
+      setLoading(true)
       const response = await axios.post('https://kanban-todo-backend.onrender.com/api/v1/user/signup', {
           username: data.username,
           password: data.password,
@@ -36,6 +40,7 @@ export default function SignUpForm(): JSX.Element {
       const token = response.data.token;
       localStorage.setItem('token', token);
       console.log('Token stored:', token);
+
       
       console.log('Response:', response.data);
 
@@ -56,6 +61,7 @@ export default function SignUpForm(): JSX.Element {
   }
 
   return (
+    
     <div className="flex items-center justify-center min-h-screen ">
       <div className="p-8 border rounded shadow-lg bg-white w-full max-w-xs md:w-3/12">
         <form
@@ -111,11 +117,17 @@ export default function SignUpForm(): JSX.Element {
               </span>
             )}
           </div>
-          <div className="flex justify-center">
+          {
+            loading ?( <Button disabled>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Please wait
+            </Button>) : (<div className="flex justify-center">
             <Button type="submit" className="justify-center w-9/12">
               Sign Up
             </Button>
-          </div>
+          </div>) 
+          }
+          
         </form>
         <div className="flex items-center justify-center">
           <p className="text-xs">Already have an account?</p>

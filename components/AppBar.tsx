@@ -19,6 +19,7 @@ export function AppBar(){
     useEffect(()=>{
         const token = localStorage.getItem("token") || " ";
         setToken(token);
+        alert("Please note that the backend is hosted on free server wait for 20s while sending a request or just retry it 4-5 times to activate the backend")
         
     }, [token, signState])
     return <div className="border-b-2 border-solid border-black p-4 flex justify-between">
